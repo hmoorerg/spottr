@@ -2,31 +2,70 @@
     <head><title>Find workout partners!</title></head>
     <Body>
         <h1>Here are some workout partners for you :  </h1>
-        City : <input id="txtCity"/>
+        City : <input id="txtCity"/> <br/>
         Age : <input id="txtAge"/>
+        <br />
+        <br />
+        Gender: <select id="comboGender" style="max-width:50%;">
+                <option value="A">Any</option> <br />
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+            </select><br />
+        Prefered Workout times <select id="comboWorkoutTime" style="max-width:50%;">
+                <option value="any time">Any</option>
+                <option value="early morning">Early Morning (5am-8am)</option> <br />
+                <option value="morning">Morning (8am-11am)</option>
+                <option value="lunchtime">Lunchtime (8am-11am)</option>
+                <option value="afternoon">Afternoon (11am-3pm)</option>
+                <option value="evening">Evening (3pm-9pm)</option>
+                <option value="night">Night (9pm-12am)</option>
+                <option value="late night">Late Night (12am-5am)</option>
+                
+            </select>  <br />
+            
+            <br />
+        
         <br /><br />
-        <div id="userList" style="background-color: beige;border-style:solid;border-radius: 10px ;background-color: #EEE;">
+        <div id="userList" style="padding:15px;background-color: beige;border-style:solid;border-radius: 10px ;background-color: #EEE;">
             Users : <br/>
         </div>
         <script>
             var list = document.getElementById("userList")
-            
+
             
             function filterUsers(user) {
-                var addUser = true;
+                var shouldAddUser = true;
 
                 var txtCity = document.getElementById("txtCity")
                 if (txtCity.value != "") {
-                    if (user.city != txtCity.value)
-                        addUser = false
-                }
-                var txtAge = document.getElementById("txtAge")
-                if (txtAge.value != "") {
-                    if (user.age != txtAge.value)
-                        addUser = false
+                var search = new RegExp(txtCity.value,'i')
+                    if (!user.city.match(search))
+                        shouldAddUser = false
                 }
                 
-                return addUser
+                var comboGender = document.getElementById("comboGender")
+                if (comboGender.value != "A") {
+                    if (user.gender != comboGender.value)
+                        shouldAddUser = false
+                }
+
+                var comboWorkoutTime = document.getElementById("comboWorkoutTime")
+                if (comboWorkoutTime.value != "any time") {
+                    if (user.workoutTime != comboWorkoutTime.value)
+                        shouldAddUser = false
+                }
+                console.log(comboWorkoutTime.value," ",user.workoutTime)
+
+                var txtAge = document.getElementById("txtAge")
+                if (txtAge.value != "") {
+                    var search = new RegExp(txtAge.value,'i')
+                    if (!user.age.toString().match(search))
+                        shouldAddUser = false
+                    console.log(toString(user.age).match(search),user.age.toString())
+                }
+                
+                return shouldAddUser
 
             }
 
@@ -39,7 +78,7 @@
                     break;
                     case "O" : prettyPrintGender = "with no gender"
                 }
-                return user.name + " lives in " + user.city + " and is a " + user.age + " year old " + prettyPrintGender
+                return user.name + " lives in " + user.city + " and is a " + user.age + " year old " + prettyPrintGender + " who works out at " + user.workoutTime
             }
 
             function updateList(){
@@ -57,6 +96,14 @@
             }
 
             document.getElementById("txtCity").onkeypress = function (){
+                updateList();
+            }
+            
+            document.getElementById("comboGender").onchange = function (){
+                updateList();
+            }
+
+            document.getElementById("comboWorkoutTime").onchange = function (){
                 updateList();
             }
 

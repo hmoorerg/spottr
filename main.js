@@ -10,7 +10,6 @@ var app = express()
 app.use(bodyParser.urlencoded({     
     extended: true
   })); 
-app.use(bodyParser.urlencoded());
 
 app.use(express.static('public'))
 app.get('/',serveFile("main.html"))
@@ -34,10 +33,10 @@ function registerUser(req,res){
     const age = req.body.user.age
     const city = req.body.user.city
     const email =  req.body.user.email
-
+    var workoutTime = req.body.user.workoutTime
+    
     console.log (name," ",gender)
-
-
+    
     switch (gender) {
         case "Male" : gender = "M"
         break;
@@ -46,9 +45,11 @@ function registerUser(req,res){
         case "Other" : gender = "O"
         break;
     }
-    console.log (name," ",gender)
+    
 
-    createUser(name,gender,age,city,email);
+    console.log (name," ",gender," ",workoutTime)
+
+    createUser(name,gender,age,city,email,workoutTime);
 
 
     res.redirect("/filterusers")
@@ -57,10 +58,10 @@ function registerUser(req,res){
 
 //Name Gender Age City Email
 
-function createUser(name,gender,age,city,email) {
+function createUser(name,gender,age,city,email,workoutTime) {
     db.serialize(function () {
-        var statement = db.prepare("insert into users values (?,?,?,?,?);")
-        statement.run(name,gender, age,city,email)
+        var statement = db.prepare("insert into users (name,gender,age,city,email,workoutTime) values (?,?,?,?,?,?);")
+        statement.run(name,gender, age,city,email,workoutTime)
         statement.finalize()
     });
 }
@@ -68,7 +69,7 @@ function createUser(name,gender,age,city,email) {
 
 function initializeDB(){
     db.serialize(function(){
-        db.run("CREATE TABLE IF NOT EXISTS users (name text, gender char, age integer, city text, email text);")
+        db.run("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT,,name text, gender char, age integer, city text, email text,workoutTime text);")
     });
 }
 function serveUserList(req,res){
