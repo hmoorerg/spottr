@@ -1,0 +1,30 @@
+html, body {
+    /*padding: 0;
+    margin: 0;
+    background-image: url(../Images/Background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;*/
+}
+/*this is how you make a comment*/
+
+.indexbackground{
+    background-image: url(https://ucdavismbaambassadors.files.wordpress.com/2013/01/the-arc.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 5%;
+}
+
+.homediv{
+    width: auto;
+    height: auto;
+    background-color: rgba(60,60,90,0.95);
+    border-radius: 30px;/*this makes the boarder of your square rounded*/
+    margin: 0 auto;
+    text-align: center;
+    color: rgb(200,200,250);
+    padding: 5% /*15px 10px 5px/*This padding is top-right-botum-left and it is decreasing 5 pixels each side*/
+}

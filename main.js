@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static('public'))
 app.get('/',serveFile("main.html"))
 app.get('/register',serveFile("register.html"))
+app.get('/logon',serveFile("logon.html"))
 app.post('/register',registerUser)
 app.get('/getusers',serveUserList)
 app.get('/filterusers',serveFile("filterusers.html"))
@@ -78,7 +79,7 @@ function serveUserList(req,res){
         var statement = db.all('select * from users;', (err,allRows) => {
             console.log(util.inspect(allRows))
             res.setHeader('Content-Type','application/json');
-            res.send(JSON.stringify({allRows}))
+            res.send(JSON.stringify(allRows))
         });
         }
 
