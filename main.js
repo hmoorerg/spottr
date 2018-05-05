@@ -46,9 +46,6 @@ function registerUser(req,res){
         break;
     }
     
-
-    console.log (name," ",gender," ",workoutTime)
-
     createUser(name,gender,age,city,email,workoutTime);
 
 
@@ -69,7 +66,7 @@ function createUser(name,gender,age,city,email,workoutTime) {
 
 function initializeDB(){
     db.serialize(function(){
-        db.run("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT,,name text, gender char, age integer, city text, email text,workoutTime text);")
+        db.run("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT,name text, gender char, age integer, city text, email text,workoutTime text);")
     });
 }
 function serveUserList(req,res){

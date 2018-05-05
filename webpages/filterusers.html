@@ -1,18 +1,22 @@
 <DOCTYPE Html>
     <head><title>Find workout partners!</title></head>
-    <Body>
-        <h1>Here are some workout partners for you :  </h1>
-        City : <input id="txtCity"/> <br/>
-        Age : <input id="txtAge"/>
+    <Body style="width: 90vw; margin: auto;text-align: center; padding: 1%">
+        <h1>Filters : </h1>
+        <!--City : <br /> -->
+        <input id="txtCity" placeholder="City"/> <br/>
+        <!--Age :  <br />-->    <br/>
+        <input type="number" placeholder="Age" id="txtAge"/>
         <br />
         <br />
-        Gender: <select id="comboGender" style="max-width:50%;">
+        Gender: <br/>
+        <select id="comboGender" style="max-width:80vw;">
                 <option value="A">Any</option> <br />
                 <option value="M">Male</option>
                 <option value="F">Female</option>
                 <option value="O">Other</option>
-            </select><br />
-        Prefered Workout times <select id="comboWorkoutTime" style="max-width:50%;">
+            </select><br /><br />
+        Prefered Workout times : <br />
+        <select id="comboWorkoutTime" style="max-width:50%;">
                 <option value="any time">Any</option>
                 <option value="early morning">Early Morning (5am-8am)</option> <br />
                 <option value="morning">Morning (8am-11am)</option>
@@ -27,7 +31,8 @@
             <br />
         
         <br /><br />
-        <div id="userList" style="padding:15px;background-color: beige;border-style:solid;border-radius: 10px ;background-color: #EEE;">
+        <h1>Here are some workout partners for you :  </h1>
+        <div id="userList" style="line-height:2em;padding:20px;background-color: #FFF;border-style:solid;border-radius: 30px; font-size: 1.5em;">
             Users : <br/>
         </div>
         <script>
@@ -55,14 +60,12 @@
                     if (user.workoutTime != comboWorkoutTime.value)
                         shouldAddUser = false
                 }
-                console.log(comboWorkoutTime.value," ",user.workoutTime)
 
                 var txtAge = document.getElementById("txtAge")
                 if (txtAge.value != "") {
                     var search = new RegExp(txtAge.value,'i')
                     if (!user.age.toString().match(search))
                         shouldAddUser = false
-                    console.log(toString(user.age).match(search),user.age.toString())
                 }
                 
                 return shouldAddUser
@@ -90,12 +93,12 @@
                         for (var i = 0; i < filteredData.length; i++) {
                             var person = filteredData[i]
 
-                            list.innerHTML+= '<strong>'+printUserInfo(person)+'<strong/><br />'
+                            list.innerHTML+= '<p>'+printUserInfo(person)+'</p><br />'
                         } 
                     });               
             }
 
-            document.getElementById("txtCity").onkeypress = function (){
+            document.getElementById("txtCity").onkeydown = function (){
                 updateList();
             }
             
@@ -107,7 +110,7 @@
                 updateList();
             }
 
-            document.getElementById("txtAge").onkeypress = function (){
+            document.getElementById("txtAge").onkeydown = function (){
                 updateList();
             }
 

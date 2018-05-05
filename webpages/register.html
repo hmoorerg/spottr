@@ -1,43 +1,59 @@
 <DOCTYPE Html>
+
     <head>
         <title>
             Register new user
         </title>
     </head>
-    <Body style="padding:15px; align-content: center; width:80%; margin:auto; text-align: center">
-        <h1>Register new account</h1>
-        <form method="post" action="/register" style="margin:auto; width:90%;">
-            <!--
+
+        <Body style="padding:15px; align-content: center; width:80%; margin:auto; text-align: center;background-image:url(https://images.pexels.com/photos/949128/pexels-photo-949128.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-size:cover;">
+
+        <div id=registrationPage style="background-color: #EEEEEEAA; padding: 5%; box-shadow: 5px 10px 5px 4px #00000055;">
+            <h1>Register a new account!</h1>
+            <form method="post" action="/register">
+                <!--
                 Name Gender Age City Email
             -->
-            Name: <br/>
-             <input type="text" name="user[name]"/>    <br/> <br/>
-            Email:  <br/>
-            <input type="text" name="user[email]"/>  <br/> <br/>
-            Age :  <br/>
-            <input type="text" name="user[age]"/>  <br/> <br/>
-            City :  <br/>
-            <input type="text" name="user[city]"/>  <br/> <br/>
-            Prefered Workout times <br/>
-            <select name="user[workoutTime]" id="comboWorkoutTime" style="max-width:50%;">
-                <option value="any time">Any</option>
-                <option value="early morning">Early Morning (5am-8am)</option> <br />
-                <option value="morning">Morning (8am-11am)</option>
-                <option value="lunchtime">Lunchtime (8am-11am)</option>
-                <option value="afternoon">Afternoon (11am-3pm)</option>
-                <option value="evening">Evening (3pm-9pm)</option>
-                <option value="night">Night (9pm-12am)</option>
-                <option value="late night">Late Night (12am-5am)</option>
-                
-            </select>  <br /> <br/>
-            Gender:  <br/>
-            <select name="user[gender]">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-            </select> <br /> <br/>
-            <br/>
-            <input type="submit" value="Add user and search!">
-        </form>
+                <!--Name: <br/>-->
+                <input type="text" name="user[name]" placeholder="Name" />
+                <br/>
+                <br/>
+                <!--Email:  <br/>-->
+                <input type="email" name="user[email]" placeholder="Email" />
+                <br/>
+                <br/>
+                <!--Age :  <br/>-->
+                <input style="height: 2em;" type="number" name="user[age]" placeholder="Age" />
+                <br/>
+                <br/>
+                <!--City :  <br/>-->
+                <input type="text" name="user[city]" placeholder="City" />
+                <br/>
+                <br/>
+                <select name="user[gender]">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+                <br />
+                <br/> Prefered Workout times
+                <br/>
+                <select name="user[workoutTime]" id="comboWorkoutTime" style="max-width:50%;">
+                    <option value="any time">Any</option>
+                    <option value="early morning">Early Morning (5am-8am)</option>
+                    <br />
+                    <option value="morning">Morning (8am-11am)</option>
+                    <option value="lnchtime">Lunchtime (8am-11am)</option>
+                    <option value="afternoon">Afternoon (11am-3pm)</option>
+                    <option value="evening">Evening (3pm-9pm)</option>
+                    <option value="night">Nigt (9pm-12am)</option>
+                    <option value="late night">Late Night (12am-5am)</option>
+                </select>
+                <br />
+                <!--Gender:  <br/>-->
+                <br/>
+                <input type="submit" value="Add user and search!">
+            </form>
+        </div>
     </Body>
 </DOCTYPE>
