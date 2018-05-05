@@ -1,0 +1,26 @@
+<DOCTYPE Html>
+    <head>
+        <title>
+            Register new user
+        </title>
+    </head>
+    <Body>
+        <h1>Register new account</h1>
+        <form method="post" action="/register">
+            <!--
+                Name Gender Age City Email
+            -->
+            Name: <input type="text" name="user[name]"/>    <br/>
+            Email: <input type="text" name="user[email]"/>  <br/>
+            Gender: <select name="user[gender]" style="max-width:50%;">
+                <option value="Male">Male</option> <>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select> <br />
+            Age : <input type="text" name="user[age]"/>  <br/>
+            City : <input type="text" name="user[city]"/>  <br/>
+            <br/>
+            <input type="submit" value="Add user and search!">
+        </form>
+    </Body>
+</DOCTYPE>

@@ -1,0 +1,73 @@
+<DOCTYPE Html>
+    <head><title>Find workout partners!</title></head>
+    <Body>
+        <h1>Here are some workout partners for you :  </h1>
+        City : <input id="txtCity"/>
+        Age : <input id="txtAge"/>
+        <br /><br />
+        <div id="userList" style="background-color: beige;border-style:solid;border-radius: 10px ;background-color: #EEE;">
+            Users : <br/>
+        </div>
+        <script>
+            var list = document.getElementById("userList")
+            
+            
+            function filterUsers(user) {
+                var addUser = true;
+
+                var txtCity = document.getElementById("txtCity")
+                if (txtCity.value != "") {
+                    if (user.city != txtCity.value)
+                        addUser = false
+                }
+                var txtAge = document.getElementById("txtAge")
+                if (txtAge.value != "") {
+                    if (user.age != txtAge.value)
+                        addUser = false
+                }
+                
+                return addUser
+
+            }
+
+            function printUserInfo(user){
+                var prettyPrintGender = "O";
+                switch (user.gender){
+                    case "M" : prettyPrintGender = "male" 
+                    break;
+                    case "F" : prettyPrintGender = "female"
+                    break;
+                    case "O" : prettyPrintGender = "with no gender"
+                }
+                return user.name + " lives in " + user.city + " and is a " + user.age + " year old " + prettyPrintGender
+            }
+
+            function updateList(){
+                fetch('http://localhost:8080/getusers')
+                    .then((data) => data.json())
+                    .then((finishedData) => {
+                        list.innerHTML = ""; // RESET INNER TEXT
+                        var filteredData = finishedData.allRows.filter(filterUsers)
+                        for (var i = 0; i < filteredData.length; i++) {
+                            var person = filteredData[i]
+
+                            list.innerHTML+= '<strong>'+printUserInfo(person)+'<strong/><br />'
+                        } 
+                    });               
+            }
+
+            document.getElementById("txtCity").onkeypress = function (){
+                updateList();
+            }
+
+            document.getElementById("txtAge").onkeypress = function (){
+                updateList();
+            }
+
+            document.addEventListener("DOMContentLoaded", function(event) { 
+                updateList();
+            });
+
+        </script>
+    </Body>
+</DOCTYPE>
